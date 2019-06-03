@@ -1,7 +1,9 @@
 <?php
+
 /**
-* Create Customize option with hook
-*/
+ * Create Customize option with hook.
+ */
+
 class Customizer
 {
     private $wp_customize;
@@ -90,13 +92,98 @@ class Customizer
 
     public function register_control($control, $sectionid = false, $settingid = false)
     {
-        $this->wp_customize->add_control($control['id'],
-            array(
+        $type = trim($control['type']);
+        if ($type != '' && method_exists($this, "generate_{$type}_section")) {
+            call_user_func(array($this, "generate_{$type}_section"), $control, $sectionid, $settingid);
+        } else {
+            $this->wp_customize->add_control($control['id'], array(
             'label' => sprintf(__('%s'), $control['title']),
             'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
             'setting' => $settingid,
-            )
-        );
+            'type' => $type ? $type : 'text', ));
+        }
+    }
+
+    public function generate_image_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Image_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_upload_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Upload_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_color_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Color_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_menu_location_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Nav_Menu_Locations_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_code_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Code_Editor_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_date_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Date_Time_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_media_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Media_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_menu_auto_add_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Nav_Menu_Auto_Add_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_new_menu_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_New_Menu_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid, )));
+    }
+
+    public function generate_checkbox_section($control, $sectionid = false, $settingid = false)
+    {
+        $this->wp_customize->add_control(new WP_Customize_Control($this->wp_customize, $control['id'], array(
+                    'label' => sprintf(__('%s'), $control['title']),
+                    'section' => $sectionid ? $sectionid : 'title_tagline', //title_tagline
+                    'setting' => $settingid,
+                    'type' => $control['type'],
+                    'choices' => $control['choices'], )));
     }
 }
 
