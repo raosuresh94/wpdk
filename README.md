@@ -133,32 +133,6 @@ It helps you to Enqueue Scripts and Generate Post-Type Very easy. It will save y
                           'setting' => 'facebook_link',
                       ],
                   ],
-                  [
-                      'setting' => [
-                          'id' => 'twitter_link',
-                          'default' => 'Twitter Link',
-                          'transport' => 'refresh',
-                      ],
-                      'control' => [
-                          'id' => 'twitter_link',
-                          'title' => 'Twitter Link',
-                          'section' => 'social_section',
-                          'setting' => 'twitter_link',
-                      ],
-                  ],
-                  [
-                      'setting' => [
-                          'id' => 'linkedin_link',
-                          'default' => 'Linked In Link',
-                          'transport' => 'refresh',
-                      ],
-                      'control' => [
-                          'id' => 'linkedin_link',
-                          'title' => 'Linked In Link',
-                          'section' => 'social_section',
-                          'setting' => 'linkedin_link',
-                      ],
-                  ],
               ];
            });
-           ```
+              ```
