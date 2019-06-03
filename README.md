@@ -103,5 +103,66 @@ It helps you to Enqueue Scripts and Generate Post-Type Very easy. It will save y
           ];
      });
        ```
+       
+       
  ###### Create Customizer Option with hook
-    * wpdk_register_theme_option
+   * wpdk_register_theme_option
+   
+    ```ruby
+       add_filter('wpdk_register_theme_option', function ($sections) {
+           return $sections = [
+              [
+                  'panel' => [
+                      'id' => 'social_panel',
+                      'title' => 'Social Details',
+                      'description' => 'Add Social Details Here!',
+                      'priority' => 160,
+                  ],
+                  'section' => [
+                      'id' => 'social_section',
+                      'panel' => 'social_panel',
+                      'title' => 'Social Links',
+                      'priority' => 30,
+                  ],
+                  'setting' => [
+                      'id' => 'facebook_link',
+                      'default' => 'Facebook Link',
+                      'transport' => 'refresh',
+                  ],
+                  'control' => [
+                      'id' => 'facebook_link',
+                      'title' => 'Facebook Link',
+                      'section' => 'social_section',
+                      'setting' => 'facebook_link',
+                  ],
+              ],
+              [
+                  'setting' => [
+                      'id' => 'twitter_link',
+                      'default' => 'Twitter Link',
+                      'transport' => 'refresh',
+                  ],
+                  'control' => [
+                      'id' => 'twitter_link',
+                      'title' => 'Twitter Link',
+                      'section' => 'social_section',
+                      'setting' => 'twitter_link',
+                  ],
+              ],
+              [
+                  'setting' => [
+                      'id' => 'linkedin_link',
+                      'default' => 'Linked In Link',
+                      'transport' => 'refresh',
+                  ],
+                  'control' => [
+                      'id' => 'linkedin_link',
+                      'title' => 'Linked In Link',
+                      'section' => 'social_section',
+                      'setting' => 'linkedin_link',
+                  ],
+              ],
+          ];
+       });
+       ```
+   
