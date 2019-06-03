@@ -164,5 +164,5 @@ It helps you to Enqueue Scripts and Generate Post-Type Very easy. It will save y
                     ],
                 ];
              });
-               ```
+        ```
    
