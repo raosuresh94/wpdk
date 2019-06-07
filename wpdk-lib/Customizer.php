@@ -31,7 +31,7 @@ class Customizer
                 $this->register_panel($sections['panel']);
             }
             if ($sections['section']) {
-                $panelid = $sections['panel']['id'] ? $sections['panel']['id'] : '';
+                $panelid = $sections['section']['id'] ? $sections['section']['id'] : '';
                 $this->register_section($sections['section'], $panelid);
             }
             if ($sections['setting']) {
