@@ -3,7 +3,7 @@ It helps you to Enqueue Scripts and Generate Post-Type Very easy. It will save y
 
 ##### Require The library File to your function.php
   ```ruby
-   require_once get_template_directory().'/wpdk/Init.php';
+   require_once __DIR__.'/wpdk-lib/Init.php';
   ```
 
 # Hooks and Use
